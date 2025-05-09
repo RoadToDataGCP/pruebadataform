@@ -1,0 +1,10 @@
+config {
+  type: "table",
+  schema: "staging_aemet",
+  name: "stg_aemet_jrs"
+}
+ 
+
+ Select 
+ * 
+ from ${ref('aemetextractionjavi_raw')}
