@@ -1,0 +1,6 @@
+{
+  "defaultSchema": "dataform",
+  "warehouse": "bigquery",
+  "defaultLocation": "europe-west1",
+  "defaultDatabase": "r2d-interno-dev"
+}
