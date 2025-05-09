@@ -1,0 +1,80 @@
+config {
+  type: "table",
+  schema: "staging_aemet",
+  name: "stg_aemet_jrs"
+}
+
+SELECT
+  codigo_municipio,
+  nombre,
+  provincia,
+  CAST(SUBSTR(fecha, 1, 10) AS DATE) AS fecha,
+
+  -- Precipitaciones
+  SAFE_CAST(probPrecipitacion_00_24 AS FLOAT64) AS probPrecipitacion_00_24,
+  SAFE_CAST(probPrecipitacion_00_12 AS FLOAT64) AS probPrecipitacion_00_12,
+  SAFE_CAST(probPrecipitacion_12_24 AS FLOAT64) AS probPrecipitacion_12_24,
+  SAFE_CAST(probPrecipitacion_00_06 AS FLOAT64) AS probPrecipitacion_00_06,
+  SAFE_CAST(probPrecipitacion_06_12 AS FLOAT64) AS probPrecipitacion_06_12,
+  SAFE_CAST(probPrecipitacion_12_18 AS FLOAT64) AS probPrecipitacion_12_18,
+  SAFE_CAST(probPrecipitacion_18_24 AS FLOAT64) AS probPrecipitacion_18_24,
+
+  -- Cota de nieve
+  SAFE_CAST(cotaNieveProv_00_24 AS FLOAT64) AS cotaNieveProv_00_24,
+  SAFE_CAST(cotaNieveProv_00_12 AS FLOAT64) AS cotaNieveProv_00_12,
+  SAFE_CAST(cotaNieveProv_12_24 AS FLOAT64) AS cotaNieveProv_12_24,
+  SAFE_CAST(cotaNieveProv_00_06 AS FLOAT64) AS cotaNieveProv_00_06,
+  SAFE_CAST(cotaNieveProv_06_12 AS FLOAT64) AS cotaNieveProv_06_12,
+  SAFE_CAST(cotaNieveProv_12_18 AS FLOAT64) AS cotaNieveProv_12_18,
+  SAFE_CAST(cotaNieveProv_18_24 AS FLOAT64) AS cotaNieveProv_18_24,
+
+  -- Estado del cielo
+  estadoCielo_00_24,
+  estadoCielo_00_12,
+  estadoCielo_12_24,
+  estadoCielo_00_06,
+  estadoCielo_06_12,
+  estadoCielo_12_18,
+  estadoCielo_18_24,
+
+  -- Viento
+  viento_direccion_00_24,
+  SAFE_CAST(viento_velocidad_00_24 AS FLOAT64) AS viento_velocidad_00_24,
+  viento_direccion_00_12,
+  SAFE_CAST(viento_velocidad_00_12 AS FLOAT64) AS viento_velocidad_00_12,
+  viento_direccion_12_24,
+  SAFE_CAST(viento_velocidad_12_24 AS FLOAT64) AS viento_velocidad_12_24,
+  viento_direccion_00_06,
+  SAFE_CAST(viento_velocidad_00_06 AS FLOAT64) AS viento_velocidad_00_06,
+  viento_direccion_06_12,
+  SAFE_CAST(viento_velocidad_06_12 AS FLOAT64) AS viento_velocidad_06_12,
+  viento_direccion_12_18,
+  SAFE_CAST(viento_velocidad_12_18 AS FLOAT64) AS viento_velocidad_12_18,
+  viento_direccion_18_24,
+  SAFE_CAST(viento_velocidad_18_24 AS FLOAT64) AS viento_velocidad_18_24,
+
+  -- Rachas
+  SAFE_CAST(rachaMax_00_24 AS FLOAT64) AS rachaMax_00_24,
+  SAFE_CAST(rachaMax_00_12 AS FLOAT64) AS rachaMax_00_12,
+  SAFE_CAST(rachaMax_12_24 AS FLOAT64) AS rachaMax_12_24,
+  SAFE_CAST(rachaMax_00_06 AS FLOAT64) AS rachaMax_00_06,
+  SAFE_CAST(rachaMax_06_12 AS FLOAT64) AS rachaMax_06_12,
+  SAFE_CAST(rachaMax_12_18 AS FLOAT64) AS rachaMax_12_18,
+  SAFE_CAST(rachaMax_18_24 AS FLOAT64) AS rachaMax_18_24,
+
+  -- Temperaturas
+  SAFE_CAST(temperatura_maxima AS FLOAT64) AS temperatura_maxima,
+  SAFE_CAST(temperatura_minima AS FLOAT64) AS temperatura_minima,
+
+  -- Sensación térmica
+  SAFE_CAST(sensTermica_maxima AS FLOAT64) AS sensTermica_maxima,
+  SAFE_CAST(sensTermica_minima AS FLOAT64) AS sensTermica_minima,
+
+  -- Humedad relativa
+  SAFE_CAST(humedadRelativa_maxima AS FLOAT64) AS humedadRelativa_maxima,
+  SAFE_CAST(humedadRelativa_minima AS FLOAT64) AS humedadRelativa_minima,
+
+  -- Radiación UV
+  SAFE_CAST(uvMax AS FLOAT64) AS uvMax
+
+FROM ${ref('aemetextractionjavi_raw')}
