@@ -1,0 +1,7 @@
+config {
+  type: "incremental",
+  schema: "golden_aemet",
+  name: "gld_datosaemetgio"
+}
+ 
+  select * from ${ref('stg_datosaemetgio')}
