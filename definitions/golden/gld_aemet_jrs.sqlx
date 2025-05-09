@@ -3,3 +3,8 @@ config {
   schema: "golden_aemet",
   name: "gld_aemet_jrs"
 }
+
+
+ Select 
+ * 
+ from ${ref('stg_aemet_jrs')}
