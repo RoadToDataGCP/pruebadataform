@@ -6,12 +6,15 @@ config {
  
 
 
- select codMuni,fecha,municipio,provincia,periodo,
+ select codMuni,
+    CAST(LEFT(fecha, 10) AS DATE) AS fecha,
+    municipio,provincia,periodo,
     cast(prob_precipitacion as int) as prob_precipitacion,
     estado_cielo,
     cast(temperatura_min as int) as temperatura_min,
     cast(temperatura_max as int) as temperatura_max
     from ${ref('datosaemetgio_raw')}
+
 
 
 
