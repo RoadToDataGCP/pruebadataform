@@ -4,7 +4,7 @@ config {
   name: "stg_aemet_jrs"
 }
 
-SELECT
+SELECT * 
   codigo_municipio,
   nombre,
   provincia,
