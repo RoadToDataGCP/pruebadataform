@@ -1,0 +1,16 @@
+config {
+  type: "table",
+  schema: "staging_aemet",
+  name: "stg_aemet_hrs"
+}
+ 
+select nombre,
+  provincia,
+  cast(codigo as int),
+  cast(LEFT(fecha, 10) AS DATE),
+  periodo,
+  cast(precipitaciones as int),
+  estado_del_cielo,
+  cast(temperatura_maxima as int),
+  cast(temperatura_minima as int)
+from ${ref('aemetextractionhelena_raw')}
