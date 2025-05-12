@@ -1,0 +1,10 @@
+config {
+  type: "incremental",
+  schema: "golden_aemet",
+  name: "gld_aemet_hrs"
+}
+
+
+select * 
+from ${ref('stg_aemet_hrs')}
+where fecha > (select ifnull(max(fecha), '1900-01-01') from ${'r2d-interno-dev.golden_aemet.gld_aemet_hrs'})
