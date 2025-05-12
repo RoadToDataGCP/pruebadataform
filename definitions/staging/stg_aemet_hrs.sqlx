@@ -6,11 +6,11 @@ config {
  
 select nombre,
   provincia,
-  cast(codigo as int),
-  cast(LEFT(fecha, 10) AS DATE),
+  cast(codigo as int) as codigo,
+  cast(LEFT(fecha, 10) AS DATE) as fecha,
   periodo,
-  cast(precipitaciones as int),
+  cast(precipitaciones as int) as precipitaciones,
   estado_del_cielo,
-  cast(temperatura_maxima as int),
-  cast(temperatura_minima as int)
+  cast(temperatura_maxima as int) as temperatura_maxima,
+  cast(temperatura_minima as int) as temperatura_minima
 from ${ref('aemetextractionhelena_raw')}
