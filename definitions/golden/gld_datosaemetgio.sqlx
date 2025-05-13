@@ -4,4 +4,5 @@ config {
   name: "gld_datosaemetgio"
 }
  
-  select * from ${ref('stg_datosaemetgio')}
+SELECT * FROM ${ref('stg_datosaemetgio')}
+WHERE fecha NOT IN (SELECT fecha FROM `golden_aemet.gld_datosaemetgio`)
